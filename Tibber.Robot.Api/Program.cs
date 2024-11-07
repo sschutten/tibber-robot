@@ -20,6 +20,8 @@ builder.Services.ConfigureHttpJsonOptions(options =>
     options.SerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
+builder.Services.AddHostedService<MigrationWorker>();
+
 builder.AddNpgsqlDbContext<RobotDbContext>(connectionName: "db");
 
 var app = builder.Build();
