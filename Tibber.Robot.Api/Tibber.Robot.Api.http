@@ -1,0 +1,23 @@
+@Tibber.Robot.Api_HostAddress = http://localhost:5152
+
+POST {{Tibber.Robot.Api_HostAddress}}/tibber-developer-test/enter-path
+Content-Type: application/json
+
+{
+    "start": {
+        "x": 10,
+        "y": 22
+    },
+    "commmands": [
+        {
+            "direction": "east",
+            "steps": 2
+        },
+        {
+            "direction": "north",
+            "steps": 1
+        }
+    ]
+}
+
+###
