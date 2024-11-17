@@ -53,4 +53,4 @@ The tests are located in the `Tibber.Robot.IntegrationTests` project. To run the
 
 The API documentation page can be used to test the service manually or any HTTP client can be used to send requests to the service.
 
-There's a sample HTTP request to test the service in at the following location: `Tibber.Robot.Api/Tibber.Robot.Api.http`. The file can be opened in Visual Studio or Visual Studio Code with the REST Client extension installed.
+There's a sample HTTP request to test the service at the following location: `Tibber.Robot.Api/Tibber.Robot.Api.http`. The file can be opened in Visual Studio or Visual Studio Code with the REST Client extension installed.
