@@ -37,11 +37,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("/tibber-developer-test/enter-path", (PathRequest request, [FromServices] RobotDbContext dbContext) =>
+app.MapPost("/tibber-developer-test/enter-path", async (PathRequest request, [FromServices] RobotDbContext dbContext) =>
     {
         var stopwatch = new Stopwatch();
         stopwatch.Start();
 
+        // Move the robot
         var robot = new Robot(request.Start.X, request.Start.Y);
         foreach (var command in request.Commmands)
         {
@@ -50,21 +51,22 @@ app.MapPost("/tibber-developer-test/enter-path", (PathRequest request, [FromServ
 
         stopwatch.Stop();
 
-        return new CleanResult
+        // Save the result
+        var result = new Execution
         {
             Commands = request.Commmands.Length,
             Result = robot.UniquePlacesCleaned.Count,
             Duration = stopwatch.Elapsed,
             Timestamp = DateTimeOffset.UtcNow,
         };
+
+        await dbContext.Executions.AddAsync(result);
+        await dbContext.SaveChangesAsync();
+
+        return result;
     })
     .WithName("EnterPath")
     .WithOpenApi()
-    .Produces<CleanResult>();
+    .Produces<Execution>();
 
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

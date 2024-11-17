@@ -1,8 +1,11 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-var db = builder.AddPostgres("db").WithPgAdmin();
+var dbserver = builder.AddPostgres("dbserver").WithPgAdmin();
+
+var db = dbserver.AddDatabase("db");
 
 builder.AddProject<Projects.Tibber_Robot_Api>("api")
-    .WithReference(db);
+    .WithReference(db)
+    .WaitFor(db);
 
 builder.Build().Run();

@@ -1,6 +1,6 @@
-﻿namespace Tibber.Robot.Api.Data;
+﻿namespace Tibber.Robot.Api.Models;
 
-public class CleanResult
+public class Execution
 {
     public int Id { get; set; }
     public DateTimeOffset Timestamp { get; set; }

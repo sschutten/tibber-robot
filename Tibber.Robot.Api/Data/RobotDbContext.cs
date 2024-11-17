@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Tibber.Robot.Api.Models;
 
 namespace Tibber.Robot.Api.Data;
 
@@ -8,5 +9,5 @@ public class RobotDbContext : DbContext
     {
     }
 
-    public DbSet<CleanResult> CleanResults { get; set; }
+    public DbSet<Execution> Executions { get; set; }
 }

@@ -12,7 +12,7 @@ using Tibber.Robot.Api.Data;
 namespace Tibber.Robot.Api.Migrations
 {
     [DbContext(typeof(RobotDbContext))]
-    [Migration("20241107201346_InitialCreate")]
+    [Migration("20241117125106_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -20,12 +20,12 @@ namespace Tibber.Robot.Api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "8.0.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("Tibber.Robot.Api.Data.CleanResult", b =>
+            modelBuilder.Entity("Tibber.Robot.Api.Models.Execution", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -47,7 +47,7 @@ namespace Tibber.Robot.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CleanResults");
+                    b.ToTable("Executions");
                 });
 #pragma warning restore 612, 618
         }

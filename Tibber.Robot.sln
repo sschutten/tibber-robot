@@ -2,13 +2,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tibber.Robot.AppHost", "Tibber.Robot.AppHost\Tibber.Robot.AppHost.csproj", "{103EC4E6-B850-492D-A38C-C722B0151E88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tibber.Robot.AppHost", "Tibber.Robot.AppHost\Tibber.Robot.AppHost.csproj", "{103EC4E6-B850-492D-A38C-C722B0151E88}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tibber.Robot.ServiceDefaults", "Tibber.Robot.ServiceDefaults\Tibber.Robot.ServiceDefaults.csproj", "{E1130721-2C28-4631-B8C9-A86A2D855FD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tibber.Robot.Api", "Tibber.Robot.Api\Tibber.Robot.Api.csproj", "{0B91560E-6CD3-4DDA-A9BC-7FC484E7E735}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tibber.Robot.Api", "Tibber.Robot.Api\Tibber.Robot.Api.csproj", "{0B91560E-6CD3-4DDA-A9BC-7FC484E7E735}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tibber.Robot.UnitTests", "Tibber.Robot.UnitTests\Tibber.Robot.UnitTests.csproj", "{FEB3716A-0773-49DC-B995-B73CA7F12780}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tibber.Robot.UnitTests", "Tibber.Robot.UnitTests\Tibber.Robot.UnitTests.csproj", "{FEB3716A-0773-49DC-B995-B73CA7F12780}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tibber.Robot.IntegrationTests", "Tibber.Robot.IntegrationTests\Tibber.Robot.IntegrationTests.csproj", "{4DCABB66-2FD4-43D3-814D-A2B4F3D64A2C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D5905321-1D55-4DE9-A013-EE23178AFFAB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{13A3AD21-39AA-4372-B5EC-21A1A6CE56F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,9 +38,20 @@ Global
 		{FEB3716A-0773-49DC-B995-B73CA7F12780}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FEB3716A-0773-49DC-B995-B73CA7F12780}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FEB3716A-0773-49DC-B995-B73CA7F12780}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DCABB66-2FD4-43D3-814D-A2B4F3D64A2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DCABB66-2FD4-43D3-814D-A2B4F3D64A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DCABB66-2FD4-43D3-814D-A2B4F3D64A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DCABB66-2FD4-43D3-814D-A2B4F3D64A2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{103EC4E6-B850-492D-A38C-C722B0151E88} = {13A3AD21-39AA-4372-B5EC-21A1A6CE56F0}
+		{E1130721-2C28-4631-B8C9-A86A2D855FD1} = {13A3AD21-39AA-4372-B5EC-21A1A6CE56F0}
+		{0B91560E-6CD3-4DDA-A9BC-7FC484E7E735} = {13A3AD21-39AA-4372-B5EC-21A1A6CE56F0}
+		{FEB3716A-0773-49DC-B995-B73CA7F12780} = {D5905321-1D55-4DE9-A013-EE23178AFFAB}
+		{4DCABB66-2FD4-43D3-814D-A2B4F3D64A2C} = {D5905321-1D55-4DE9-A013-EE23178AFFAB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {98680F29-C020-42CC-917B-C0429F609F60}
