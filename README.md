@@ -26,7 +26,7 @@ The easiest way to run the service is by launching the .NET Aspire App Host.
 The dashboard provides an overview of the running services and their status. You can view their health, logs, traces and metrics.
 
 - Click on the endpoint of the service named `api` to get to the API documentation page. From here you can test the service by sending requests to the API.
-- Click on the endpoint of the service named 'dbserver-pgadmin` to get to the pgAdmin dashboard. From here you can easily access the database and view the stored records.
+- Click on the endpoint of the service named `dbserver-pgadmin` to get to the pgAdmin dashboard. From here you can easily access the database and view the stored records.
 
 ### Docker compose
 
