@@ -8,7 +8,7 @@ Content-Type: application/json
         "x": 10,
         "y": 22
     },
-    "commmands": [
+    "commands": [
         {
             "direction": "east",
             "steps": 2

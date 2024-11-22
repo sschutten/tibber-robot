@@ -23,6 +23,7 @@ public class ApiTests : IAsyncLifetime
 
     public async Task InitializeAsync()
     {
+        // Initialize the app host and wait for the API to be running
         var appHost = await DistributedApplicationTestingBuilder
             .CreateAsync<Projects.Tibber_Robot_AppHost>();
 
@@ -37,10 +38,12 @@ public class ApiTests : IAsyncLifetime
             .GetRequiredService<ResourceNotificationService>();
 
         await _app.StartAsync();
-        
+
         await resourceNotificationService.WaitForResourceAsync("api", KnownResourceStates.Running)
             .WaitAsync(TimeSpan.FromSeconds(30));
 
+        // Create an HTTP client for calling the API
+        // and a DbContext for verifying the data in the database
         _httpClient = _app.CreateHttpClient("api");
 
         var dbConnectionString = await _app.GetConnectionStringAsync("db");
@@ -53,7 +56,6 @@ public class ApiTests : IAsyncLifetime
     /// <summary>
     /// Ensures the enter-path endpoint returns the execution and stores it in the database.
     /// </summary>
-    /// <returns></returns>
     [Fact]
     public async Task Enter_path_stores_and_returns_execution()
     {
@@ -61,9 +63,9 @@ public class ApiTests : IAsyncLifetime
         var request = new
         {
             start = new { x = 0, y = 0 },
-            commmands = new[]
+            commands = new[]
             {
-                new { direction = "North", step = 1 },
+                new { direction = "north", step = 1 },
             }
         };
 
@@ -71,11 +73,16 @@ public class ApiTests : IAsyncLifetime
         var response = await _httpClient.PostAsJsonAsync("/tibber-developer-test/enter-path", request);
 
         // Assert
-        var settings = new VerifySettings();
-        settings.ScrubMembers("duration", "Duration"); // Scrub duration because each test it's slightly different
 
+        // Scrub duration because each test it's slightly different
+        // also per verification the casing is a bit different, hence we're scrubbing 'duration' and 'Duration'
+        var settings = new VerifySettings();
+        settings.ScrubMembers("duration", "Duration");
+
+        // Verify the API response is what we expect
         await Verify(response, settings).UseMethodName($"{CurrentMethodName()}_HttpResponseMessage");
 
+        // Verify the data in the database is what we expect
         var execution = await _dbContext.Executions.FirstAsync();
         await Verify(execution, settings).UseMethodName($"{CurrentMethodName()}_Execution");
     }

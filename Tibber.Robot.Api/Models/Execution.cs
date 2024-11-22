@@ -3,8 +3,8 @@
 public class Execution
 {
     public int Id { get; set; }
-    public DateTimeOffset Timestamp { get; set; }
-    public int Commands { get; set; }
-    public int Result { get; set; }
-    public TimeSpan Duration { get; set; }
+    public required DateTimeOffset Timestamp { get; set; }
+    public required int Commands { get; set; }
+    public required int Result { get; set; }
+    public required TimeSpan Duration { get; set; }
 }

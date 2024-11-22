@@ -2,9 +2,9 @@
 
 public record PathRequest(Start Start)
 {
-    public Commmand[] Commmands { get; set; } = [];
+    public Command[] Commands { get; set; } = [];
 }
 
 public record Start(int X, int Y);
 
-public record Commmand(Direction Direction, int Steps);
+public record Command(Direction Direction, int Steps);

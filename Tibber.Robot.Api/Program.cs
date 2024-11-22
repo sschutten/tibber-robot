@@ -22,7 +22,7 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 
 builder.Services.AddHostedService<MigrationWorker>();
 
-builder.AddNpgsqlDbContext<RobotDbContext>(connectionName: "db");
+builder.AddNpgsqlDbContext<RobotDbContext>("db");
 
 var app = builder.Build();
 
@@ -35,8 +35,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
 app.MapPost("/tibber-developer-test/enter-path", async (PathRequest request, [FromServices] RobotDbContext dbContext) =>
     {
         var stopwatch = new Stopwatch();
@@ -44,7 +42,7 @@ app.MapPost("/tibber-developer-test/enter-path", async (PathRequest request, [Fr
 
         // Move the robot
         var robot = new Robot(request.Start.X, request.Start.Y);
-        foreach (var command in request.Commmands)
+        foreach (var command in request.Commands)
         {
             robot.Move(command.Direction, command.Steps);
         }
@@ -54,7 +52,7 @@ app.MapPost("/tibber-developer-test/enter-path", async (PathRequest request, [Fr
         // Save the result
         var result = new Execution
         {
-            Commands = request.Commmands.Length,
+            Commands = request.Commands.Length,
             Result = robot.UniquePlacesCleaned.Count,
             Duration = stopwatch.Elapsed,
             Timestamp = DateTimeOffset.UtcNow,
