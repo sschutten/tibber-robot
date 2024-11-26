@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{D5905321
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{13A3AD21-39AA-4372-B5EC-21A1A6CE56F0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tibber.Robot.Benchmarks", "Tibber.Robot.Benchmarks\Tibber.Robot.Benchmarks.csproj", "{3D1D8142-2E69-4D57-91D8-5844E3913665}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,10 @@ Global
 		{4DCABB66-2FD4-43D3-814D-A2B4F3D64A2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DCABB66-2FD4-43D3-814D-A2B4F3D64A2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4DCABB66-2FD4-43D3-814D-A2B4F3D64A2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D1D8142-2E69-4D57-91D8-5844E3913665}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D1D8142-2E69-4D57-91D8-5844E3913665}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D1D8142-2E69-4D57-91D8-5844E3913665}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D1D8142-2E69-4D57-91D8-5844E3913665}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
