@@ -37,7 +37,7 @@ namespace Tibber.Robot.Api.Migrations
                         .HasColumnType("interval");
 
                     b.Property<int>("Result")
-                        .HasColumnType("integer");
+                        .HasColumnType("bitint");
 
                     b.Property<DateTimeOffset>("Timestamp")
                         .HasColumnType("timestamp with time zone");

@@ -19,7 +19,7 @@ public partial class InitialCreate : Migration
                     .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                 Timestamp = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                 Commands = table.Column<int>(type: "integer", nullable: false),
-                Result = table.Column<int>(type: "integer", nullable: false),
+                Result = table.Column<long>(type: "bigint", nullable: false),
                 Duration = table.Column<TimeSpan>(type: "interval", nullable: false)
             },
             constraints: table =>
