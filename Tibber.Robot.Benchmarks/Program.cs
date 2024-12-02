@@ -15,6 +15,7 @@ var summary = BenchmarkRunner.Run<RobotBenchmarks>(config);
 public class RobotBenchmarks
 {
     private readonly PathRequest _lightRequest;
+    private readonly PathRequest _mediumRequest;
     private readonly PathRequest _heavyRequest;
     private static readonly JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions
     {
@@ -25,22 +26,40 @@ public class RobotBenchmarks
     public RobotBenchmarks()
     {
         _lightRequest = DehydrateRequest("robotcleanerpathlight.json");
+        _mediumRequest = DehydrateRequest("robotcleanerpathmedium.json");
         _heavyRequest = DehydrateRequest("robotcleanerpathheavy.json");
     }
 
-    //[Benchmark]
-    //public void Light() => EnterPath(_lightRequest);
+    [Benchmark]
+    public void LightBentleyOttmann() => EnterPath(new BentleyOttmannRobot(_lightRequest.Start), _lightRequest.Commands);
 
     [Benchmark]
-    public void Heavy() => EnterPath(_heavyRequest);
+    public void LightHashRobot() => EnterPath(new HashRobot(_lightRequest.Start), _lightRequest.Commands);
 
-    private static void EnterPath(PathRequest request)
+    [Benchmark]
+    public void LightSegmentedRobot() => EnterPath(new SegmentedRobot(_lightRequest.Start, 100), _lightRequest.Commands);
+
+    [Benchmark]
+    public void LightVectorRobot() => EnterPath(new VectorRobot(_lightRequest.Start), _lightRequest.Commands);
+
+    [Benchmark]
+    public void MediumBentleyOttmann() => EnterPath(new BentleyOttmannRobot(_mediumRequest.Start), _mediumRequest.Commands);
+
+    [Benchmark]
+    public void MediumHashRobot() => EnterPath(new HashRobot(_mediumRequest.Start), _mediumRequest.Commands);
+
+    [Benchmark]
+    public void MediumSegmentedRobot() => EnterPath(new SegmentedRobot(_mediumRequest.Start, 100), _mediumRequest.Commands);
+
+    [Benchmark]
+    public void MediumVectorRobot() => EnterPath(new VectorRobot(_mediumRequest.Start), _mediumRequest.Commands);
+
+    [Benchmark]
+    public void HeavyBentleyOttmann() => EnterPath(new BentleyOttmannRobot(_heavyRequest.Start), _heavyRequest.Commands);
+
+    private static void EnterPath(AbstractRobot robot, Command[] commands)
     {
-        //var robot = new SegmentedRobot(request.Start, 100);
-        //var robot = new BitRobot(request.Start);
-        var robot = new BentleyOttmannRobot(request.Start);
-
-        foreach (var command in request.Commands)
+        foreach (var command in commands)
         {
             robot.Move(command.Direction, command.Steps);
         }
@@ -57,5 +76,3 @@ public class RobotBenchmarks
         return JsonSerializer.Deserialize<PathRequest>(json, _jsonSerializerOptions) ?? throw new Exception("Response could not be deserialized to an Execution");
     }
 }
-
-

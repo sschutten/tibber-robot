@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="robotcleanerpathmedium.json" />
     <EmbeddedResource Include="robotcleanerpathlight.json" />
     <EmbeddedResource Include="robotcleanerpathheavy.json" />
   </ItemGroup>
