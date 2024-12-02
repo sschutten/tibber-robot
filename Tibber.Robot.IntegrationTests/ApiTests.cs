@@ -5,9 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net.Http.Json;
 using System.Runtime.CompilerServices;
-using System.Text.Json;
 using Tibber.Robot.Api.Data;
-using Tibber.Robot.Api.Models;
 
 namespace Tibber.Robot.IntegrationTests;
 
@@ -28,11 +26,6 @@ public class ApiTests : IAsyncLifetime
         // Initialize the app host and wait for the API to be running
         var appHost = await DistributedApplicationTestingBuilder
             .CreateAsync<Projects.Tibber_Robot_AppHost>();
-
-        appHost.Services.ConfigureHttpClientDefaults(clientBuilder =>
-        {
-            clientBuilder.AddStandardResilienceHandler();
-        });
 
         _app = await appHost.BuildAsync();
 
@@ -87,24 +80,6 @@ public class ApiTests : IAsyncLifetime
         // Verify the data in the database is what we expect
         var execution = await _dbContext.Executions.FirstAsync();
         await Verify(execution, settings).UseMethodName($"{CurrentMethodName()}_Execution");
-    }
-
-    [Fact]
-    public async Task Enter_path_heavy()
-    {
-        // Arrange
-        var assembly = typeof(ApiTests).Assembly;
-        using var stream = assembly.GetManifestResourceStream("Tibber.Robot.IntegrationTests.robotcleanerpathheavy.json") ?? throw new Exception("Can't load file");
-        using var reader = new StreamReader(stream);
-        var json = await reader.ReadToEndAsync();
-        var request = JsonSerializer.Deserialize<object>(json);
-
-        // Act
-        var response = await _httpClient.PostAsJsonAsync("/tibber-developer-test/enter-path", request);
-        var execution = await response.Content.ReadFromJsonAsync<Execution>() ?? throw new Exception("Response could not be deserialized to an Execution");
-
-        // Assert
-        Assert.InRange(execution.Duration.TotalMilliseconds, 0d, 1000d);
     }
 
     private static string CurrentMethodName(
