@@ -13,7 +13,7 @@
       id: 1,
       timestamp: DateTimeOffset_1,
       commands: 1,
-      result: 1,
+      result: 2,
       duration: {Scrubbed}
     }
   }

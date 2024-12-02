@@ -2,6 +2,6 @@
   Id: 1,
   Timestamp: DateTimeOffset_1,
   Commands: 1,
-  Result: 1,
+  Result: 2,
   Duration: {Scrubbed}
 }
