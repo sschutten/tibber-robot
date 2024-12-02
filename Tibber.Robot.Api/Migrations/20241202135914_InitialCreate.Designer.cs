@@ -12,7 +12,7 @@ using Tibber.Robot.Api.Data;
 namespace Tibber.Robot.Api.Migrations
 {
     [DbContext(typeof(RobotDbContext))]
-    [Migration("20241117125106_InitialCreate")]
+    [Migration("20241202135914_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace Tibber.Robot.Api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.11")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -39,8 +39,8 @@ namespace Tibber.Robot.Api.Migrations
                     b.Property<TimeSpan>("Duration")
                         .HasColumnType("interval");
 
-                    b.Property<int>("Result")
-                        .HasColumnType("integer");
+                    b.Property<long>("Result")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTimeOffset>("Timestamp")
                         .HasColumnType("timestamp with time zone");
