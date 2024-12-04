@@ -5,7 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System.Net.Http.Json;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
 using Tibber.Robot.Api.Data;
+using Tibber.Robot.Api.Models;
 
 namespace Tibber.Robot.IntegrationTests;
 
@@ -26,11 +28,6 @@ public class ApiTests : IAsyncLifetime
         // Initialize the app host and wait for the API to be running
         var appHost = await DistributedApplicationTestingBuilder
             .CreateAsync<Projects.Tibber_Robot_AppHost>();
-
-        appHost.Services.ConfigureHttpClientDefaults(clientBuilder =>
-        {
-            clientBuilder.AddStandardResilienceHandler();
-        });
 
         _app = await appHost.BuildAsync();
 

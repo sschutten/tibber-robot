@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Text.Json.Serialization;
-using Tibber.Robot.Api;
 using Tibber.Robot.Api.Data;
 using Tibber.Robot.Api.Models;
+using Tibber.Robot.Api.Robots;
 using Tibber.Robot.ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,11 +41,13 @@ app.MapPost("/tibber-developer-test/enter-path", async (PathRequest request, [Fr
         stopwatch.Start();
 
         // Move the robot
-        var robot = new Robot(request.Start.X, request.Start.Y);
+        var robot = new BentleyOttmannRobot(request.Start);
         foreach (var command in request.Commands)
         {
             robot.Move(command.Direction, command.Steps);
         }
+
+        var totalUniquePlaces = robot.GetTotalUniqueCleanedPlaces();
 
         stopwatch.Stop();
 
@@ -53,7 +55,7 @@ app.MapPost("/tibber-developer-test/enter-path", async (PathRequest request, [Fr
         var result = new Execution
         {
             Commands = request.Commands.Length,
-            Result = robot.UniquePlacesCleaned.Count,
+            Result = totalUniquePlaces,
             Duration = stopwatch.Elapsed,
             Timestamp = DateTimeOffset.UtcNow,
         };
