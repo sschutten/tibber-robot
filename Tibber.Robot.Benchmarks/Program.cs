@@ -10,8 +10,10 @@ IConfig? config = null;
 #if DEBUG
 config = new DebugInProcessConfig();
 #endif
-var summary = BenchmarkRunner.Run<RobotBenchmarks>(config);
 
+BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args, config);
+
+[MemoryDiagnoser]
 public class RobotBenchmarks
 {
     private readonly PathRequest _lightRequest;
@@ -34,6 +36,9 @@ public class RobotBenchmarks
     public void LightBentleyOttmann() => EnterPath(new BentleyOttmannRobot(_lightRequest.Start), _lightRequest.Commands);
 
     [Benchmark]
+    public void LightOptimizedBentleyOttmann() => EnterPath(new OptimizedBentleyOttmannRobot(_lightRequest.Start), _lightRequest.Commands);
+    
+    [Benchmark]
     public void LightHashRobot() => EnterPath(new HashRobot(_lightRequest.Start), _lightRequest.Commands);
 
     [Benchmark]
@@ -46,6 +51,9 @@ public class RobotBenchmarks
     public void MediumBentleyOttmann() => EnterPath(new BentleyOttmannRobot(_mediumRequest.Start), _mediumRequest.Commands);
 
     [Benchmark]
+    public void MediumOptimizedBentleyOttmann() => EnterPath(new OptimizedBentleyOttmannRobot(_mediumRequest.Start), _mediumRequest.Commands);
+    
+    [Benchmark]
     public void MediumHashRobot() => EnterPath(new HashRobot(_mediumRequest.Start), _mediumRequest.Commands);
 
     [Benchmark]
@@ -56,6 +64,9 @@ public class RobotBenchmarks
 
     [Benchmark]
     public void HeavyBentleyOttmann() => EnterPath(new BentleyOttmannRobot(_heavyRequest.Start), _heavyRequest.Commands);
+
+    [Benchmark]
+    public void HeavyOptimizedBentleyOttmann() => EnterPath(new OptimizedBentleyOttmannRobot(_heavyRequest.Start), _heavyRequest.Commands);
 
     private static void EnterPath(AbstractRobot robot, Command[] commands)
     {
