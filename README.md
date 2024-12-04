@@ -91,7 +91,7 @@ The following table summarizes the benchmark results for each strategy. Benchmar
 - Medium case: More complex scenario with 250 commands.
 - Heavy case: Highly complex scenario with 10,000 commands.
 
-The heavy case was only benchmarked for the Bentley-Ottmann robots, as the other variants clearly underperformed in the light and medium cases.
+> The heavy case was only benchmarked for the Bentley-Ottmann robots, as the other variants clearly underperformed in the light and medium cases.
 
 #### Performance Comparison (Mean Execution Time):
 1. **Bentley-Ottmann** variants consistently outperform all other methods in terms of execution time, especially in the light and medium cases.
