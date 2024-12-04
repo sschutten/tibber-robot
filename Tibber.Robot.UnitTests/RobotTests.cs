@@ -11,6 +11,7 @@ public class RobotTests
         public RobotFactories()
         {
             Add(new BentleyOttmannRobotFactory());
+            Add(new OptimizedBentleyOttmannRobotFactory());
             Add(new HashRobotFactory());
             Add(new SegmentedRobotFactory(100));
             Add(new VectorRobotFactory());
